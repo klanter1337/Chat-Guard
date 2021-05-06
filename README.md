@@ -1,6 +1,5 @@
 # Kurulum
 * [Node.JS](https://nodejs.org/en/) Bilgisayarınıza Node programını kurun.
-* Botu çalıştırabilmek için bir mongo bağlantısı almalısınız. [anlatım](https://youtu.be/yG6105VL8H4)
 * Yeşil Code butonuna basın ve Downland zip seçeneğine tıklayın indirme işlemini bekleyin.
 * İndirme işlemi tamamlandığında zipin üstüne gelerek buraya çıkartı işaretleyin.
 * Klasörü çıkardıkdan sonra  src klasöründe ki `config.js` adlı dosyayı doldurmanız gerekmekte doğru bir şekilde doldurduğunuzdan emin olun.
