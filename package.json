@@ -1,0 +1,23 @@
+{
+  "name": "chat-guard-2.0",
+  "author": "Klanter",
+  "version": "2.0.0",
+  "description": "Discord sunucuları için chat koruma botu",
+  "main": "app.js",
+  "scripts": {
+    "start": "node app.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/KlanterV/Chat-Guard-2.0.git"
+  },
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/KlanterV/Chat-Guard-2.0"
+  },
+  "homepage": "https://github.com/KlanterV/Chat-Guard-2.0#readme",
+  "dependencies": {
+    "discord.js": "^12.5.3",
+    "mongoose": "^5.12.6"
+  }
+}
