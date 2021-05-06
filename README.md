@@ -26,3 +26,4 @@
 * Whitelist'e eklediğin kullanıcılar roller veya kanalların engellenmiyecek'lerini unutma.
 * Sunucunun durumunu görmek için `prefix+serverstatus` yazabilirsin.
 * ![Örnek](https://i.hizliresim.com/ha3wyl.png)
+
