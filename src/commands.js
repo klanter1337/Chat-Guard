@@ -219,7 +219,7 @@ client.on('message', async message => {
         }
 
         if(args[0] === 'kapat') {
-            if(Database && Database.CharacterLimit == false)  return message.channel.send(embed.setDescription('<@'+message.author.id+'>, Bu Koruma zaten kapalı.'));
+            if(!Database || Database.CharacterLimit == false)  return message.channel.send(embed.setDescription('<@'+message.author.id+'>, Bu Koruma zaten kapalı.'));
             await db.findOneAndUpdate({ServerID: message.guild.id}, { CharacterLimit: false }, {upsert: true});
             return message.channel.send(embed.setDescription('<@'+message.author.id+'>, **Karakter Limit** başarıyla kapatıldı.'));        
         }
@@ -237,7 +237,7 @@ client.on('message', async message => {
         }
 
         if(args[0] === 'kapat') {
-            if(Database && Database.InviteGuard == false)  return message.channel.send(embed.setDescription('<@'+message.author.id+'>, Bu Koruma zaten kapalı.'));
+            if(!Database || Database.InviteGuard == false)  return message.channel.send(embed.setDescription('<@'+message.author.id+'>, Bu Koruma zaten kapalı.'));
             await db.findOneAndUpdate({ServerID: message.guild.id}, { InviteGuard: false }, {upsert: true});
             return message.channel.send(embed.setDescription('<@'+message.author.id+'>, **Invite koruması** başarıyla kapatıldı.'));        
         }
@@ -255,7 +255,7 @@ client.on('message', async message => {
         }
 
         if(args[0] === 'kapat') {
-            if(Database && Database.LinkGuard == false)  return message.channel.send(embed.setDescription('<@'+message.author.id+'>, Bu Koruma zaten kapalı.'));
+            if(!Database || Database.LinkGuard == false)  return message.channel.send(embed.setDescription('<@'+message.author.id+'>, Bu Koruma zaten kapalı.'));
             await db.findOneAndUpdate({ServerID: message.guild.id}, { LinkGuard: false }, {upsert: true});
             return message.channel.send(embed.setDescription('<@'+message.author.id+'>, **Link koruması** başarıyla kapatıldı.'));        
         }
@@ -273,7 +273,7 @@ client.on('message', async message => {
         }
 
         if(args[0] === 'kapat') {
-            if(Database && Database.MassPingGuard == false)  return message.channel.send(embed.setDescription('<@'+message.author.id+'>, Bu Koruma zaten kapalı.'));
+            if(!Database || Database.MassPingGuard == false)  return message.channel.send(embed.setDescription('<@'+message.author.id+'>, Bu Koruma zaten kapalı.'));
             await db.findOneAndUpdate({ServerID: message.guild.id}, { MassPingGuard: false }, {upsert: true});
             return message.channel.send(embed.setDescription('<@'+message.author.id+'>, **Etiket koruması** başarıyla kapatıldı.'));        
         }
@@ -291,7 +291,7 @@ client.on('message', async message => {
         }
 
         if(args[0] === 'kapat') {
-            if(Database && Database.BadWordGuard == false)  return message.channel.send(embed.setDescription('<@'+message.author.id+'>, Bu Koruma zaten kapalı.'));
+            if(!Database || Database.BadWordGuard == false)  return message.channel.send(embed.setDescription('<@'+message.author.id+'>, Bu Koruma zaten kapalı.'));
             await db.findOneAndUpdate({ServerID: message.guild.id}, { BadWordGuard: false }, {upsert: true});
             return message.channel.send(embed.setDescription('<@'+message.author.id+'>, **Küfür koruması** başarıyla kapatıldı.'));        
         }
@@ -309,7 +309,7 @@ client.on('message', async message => {
         }
 
         if(args[0] === 'kapat') {
-            if(Database && Database.SpamGuard == false)  return message.channel.send(embed.setDescription('<@'+message.author.id+'>, Bu Koruma zaten kapalı.'));
+            if(!Database || Database.SpamGuard == false)  return message.channel.send(embed.setDescription('<@'+message.author.id+'>, Bu Koruma zaten kapalı.'));
             await db.findOneAndUpdate({ServerID: message.guild.id}, { SpamGuard: false }, {upsert: true});
             return message.channel.send(embed.setDescription('<@'+message.author.id+'>, **Spam koruması** başarıyla kapatıldı.'));        
         }
