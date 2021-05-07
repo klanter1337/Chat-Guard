@@ -25,4 +25,4 @@
 * Whitelist'e eklediğin kullanıcılar roller veya kanalların engellenmiyecek'lerini unutma.
 * Sunucunun durumunu görmek için `prefix+serverstatus` yazabilirsin.
 * ![Örnek](https://i.hizliresim.com/ha3wyl.png)
-* ![Serendia](https://user-images.githubusercontent.com/82638394/115013985-6e813800-9eba-11eb-932c-116b56c1c624.gif)
+[Serendia](https://user-images.githubusercontent.com/82638394/115013985-6e813800-9eba-11eb-932c-116b56c1c624.gif)
