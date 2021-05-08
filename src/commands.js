@@ -7,7 +7,8 @@ const { RandomColor } = require('./functions');
 
 client.on('message', async message => {
     if(message.content.indexOf(config.Prefix) !== 0)
-    if(!message.guild || message.guild.id !== config.ServerID || message.author.bot || !message.member.hasPermission(8) || message.author.id !== message.guild.owner.id) return;
+    if(!message.guild || message.guild.id !== config.ServerID || message.author.bot || !message.member.hasPermission(8)) return;
+    if(message.author.id !== message.guild.owner.id) return;
     let args = message.content.split(' ').slice(1);
     let command = message.content.split(' ')[0].slice(config.Prefix.length);
     if(!command) return;
