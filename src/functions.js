@@ -30,7 +30,7 @@ async function Punish(message, GuardType, Embed) {
 
         if(GuardType === 'CharacterLimit') {
             message.channel.send(Embed.setDescription('<@'+message.author.id+'>, Aşırı karakter kullandığın için **'+MuteSüresi+'** Dakika Mute yedin. Lütfen kurallara uymaya özen göster'));
-            return client.channels.cache.get(config.PunishLogChannelID).send(Embed.setDescription('<@'+message.author.id+'>, Nickli kullanıcı '+message.content.size+' uzunluğunda mesaj yazdığı için **'+MuteSüresi+'** Dakika boyunca mutelendi.'));
+            return client.channels.cache.get(config.PunishLogChannelID).send(Embed.setDescription('<@'+message.author.id+'>, Nickli kullanıcı '+message.content.length+' uzunluğunda mesaj yazdığı için **'+MuteSüresi+'** Dakika boyunca mutelendi.'));
         }
         if(GuardType === 'MassPingGuard') {
             message.channel.send(Embed.setDescription('<@'+message.author.id+'>, Aşırı etiket attığın için **'+MuteSüresi+'** Dakika Mute yedin. Lütfen kurallara uymaya özen göster!'));
@@ -53,7 +53,7 @@ async function Punish(message, GuardType, Embed) {
 
         if(GuardType === 'CharacterLimit') {
             message.channel.send(Embed.setDescription('<@'+message.author.id+'>, Aşırı karakter kullanman yasak, tekrarı durumunda ceza alacaksın !'));
-            return client.channels.cache.get(config.PunishLogChannelID).send(Embed.setDescription('<@'+message.author.id+'>, Nickli kullanıcı **'+message.mentions.users.size+'** uzunluğunda mesaj yazdığı için uyarı aldı.'));
+            return client.channels.cache.get(config.PunishLogChannelID).send(Embed.setDescription('<@'+message.author.id+'>, Nickli kullanıcı **'+message.content.length+'** uzunluğunda mesaj yazdığı için uyarı aldı.'));
         }
         if(GuardType === 'MassPingGuard') {
             message.channel.send(Embed.setDescription('<@'+message.author.id+'>, Aşırı etiket atman yasak, tekrarı durumunda ceza alacaksın !'));
