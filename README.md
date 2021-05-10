@@ -18,11 +18,11 @@
 * install modules.bat adlı dosyayı çalıştırın ve modüllerin inmesini bekleyin indiği zaman kendi otomatik kapanacaktır.
 * Modüller kuruldukdan sonra terminali kapatabilirsiniz tekrar botun klasörüne gelin ve  `start.bat` adlı dosyayı çalıştırın artık botunuz aktif güle güle kullanın. 🎉
 * Botda bulduğunuz hataları bildirmeyi unutmayın.
+* Yardım almak için `discord.gg/serendia` sunucusunu ziyaret edebilirsiniz
 
 
 # Kullanım
 * `prefix+komutlar` Yazarak tüm komutlar ve kullanımlarını görebilirsin.
 * Whitelist'e eklediğin kullanıcılar roller veya kanalların engellenmiyecek'lerini unutma.
 * Sunucunun durumunu görmek için `prefix+serverstatus` yazabilirsin.
-* ![Örnek](https://i.hizliresim.com/ha3wyl.png)
-* Yardım almak için `discord.gg/serendia` sunucusunu ziyaret edebilirsiniz
+![Örnek](https://i.hizliresim.com/ha3wyl.png)
