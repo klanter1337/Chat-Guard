@@ -2,6 +2,9 @@ const { Schema, model } = require('mongoose');
 
 const VeryCoolSchema = new Schema({
     ServerID: { type: String, default: '' },
+    MutedRoleID: { type: String },
+    MuteDurationMinute: { type: Number, default: 60 },
+    PunishLogChannelID: { type: String },
     FiltredWords:  { type: Array, default: [] },
     WhiteListMembers:  { type: Array, default: [] },
     WhiteListRoles:  { type: Array, default: [] },

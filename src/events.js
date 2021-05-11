@@ -4,10 +4,10 @@ const process = global.process;
 
 const db = require('./db');
 const config = require('./config');
-const { Spam, RandomColor, BadWord, WhiteList, Punish } = require('./functions');
+const { Spam, RandomColor, BadWord, WhiteList, Punish } = require('./functionz');
 
 client.on('message', async (message) => {
-   if(!message.guild || message.guild.id !== config.ServerID || message.author.bot || message.member.hasPermission(8) || message.author.id === message.guild.ownerID) return;
+   if(!message.guild || message.author.bot || message.member.hasPermission(8) || message.author.id === message.guild.ownerID) return;
     const Database = await db.findOne({ ServerID: message.guild.id });
     if(!Database || WhiteList(message) === true) return; 
     const Embed = new MessageEmbed().setColor(RandomColor(true)).setTimestamp().setAuthor(message.guild.name, message.guild.iconURL({ dynamic: true }));
@@ -33,17 +33,17 @@ client.on('message', async (message) => {
     if (LinkGuardReg.test(message.content)){
         if(Database.LinkGuard === false || Database.LinkGuard === null || !Database.LinkGuard) return;
         if (message && message.deletable) message.delete({ timeout: 0130 }).catch(() => {});
-        return message.channel.send(Embed.setDescription('<@'+message.author.id+'>, Link içeren mesajlar kullanman yasak !')).then(x => x.delete({timeout: 3000}));
+        return message.channel.send(Embed.setDescription('<@'+message.author.id+'>, Link içeren mesajlar kullanman yasak !')).then(x => x.delete({timeout: 3000})).catch(() => {});
     }
     if(BadWord(message.content) === true) { 
         if(Database.BadWordGuard === false || Database.BadWordGuard === null || !Database.BadWordGuard) return;
         if (message && message.deletable) message.delete({ timeout: 0140 }).catch(() => {});
-        return message.channel.send(Embed.setDescription('<@'+message.author.id+'>, Küfür içeren mesajlar kullanman yasak !')).then(x => x.delete({timeout: 3000}));
+        return message.channel.send(Embed.setDescription('<@'+message.author.id+'>, Küfür içeren mesajlar kullanman yasak !')).then(x => x.delete({timeout: 3000})).catch(() => {});
     }
    
     if (Database && Database.FiltredWords.includes(message.content.toLowerCase()) === true) {
         if (message && message.deletable) message.delete({ timeout: 0150 }).catch(() => {});
-        return message.channel.send(Embed.setDescription('<@'+message.author.id+'>, Filtrelenmiş kelime içeren mesajlar kullanman yasak !')).then(x => x.delete({timeout: 3000}));
+        return message.channel.send(Embed.setDescription('<@'+message.author.id+'>, Filtrelenmiş kelime içeren mesajlar kullanman yasak !')).then(x => x.delete({timeout: 3000})).catch(() => {});
     }
     if(await Spam(message) === true ) {
         if(Database.SpamGuard === false || Database.SpamGuard === null || !Database.SpamGuard) return;
@@ -57,9 +57,9 @@ client.on('guildMemberAdd', async (member) => {
     
     if (Database && Database.BlackListMembers.includes(member.id) === true) {
         const MuteRole = member.guild.roles.cache.find(role => role.id === config.MutedRoleID);
-        member.roles.add(MuteRole);
+        member.roles.add(MuteRole).catch(() => {});
         setTimeout(async() => {
-            member.roles.remove(MuteRole);
+            member.roles.remove(MuteRole).catch(() => {});
             await db.findOneAndUpdate({ ServerID: member.guild.id }, { $pull: { BlackListMembers: member.id }});
         }, 7200000);}
 });
