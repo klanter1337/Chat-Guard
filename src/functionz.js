@@ -10,7 +10,7 @@ async function Punish(message, GuardType, Embed) {
     let MuteSüresi = Database.MuteDurationMinute;
 
     if(message.member.roles.cache.has(MuteRole)) return;
-    if(Database.MuteDurationMinute !== Number)MuteSüresi = 60;
+    if(Database.MuteDurationMinute < 1)MuteSüresi = 60;
     const CanBeMuted = MuteRole && message.guild.me.hasPermission('MANAGE_ROLES');
     const CanBeLog = LogChannel && LogChannel.type === 'text';
 
