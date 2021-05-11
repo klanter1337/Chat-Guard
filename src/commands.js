@@ -41,7 +41,7 @@ client.on('message', async message => {
         __**DİĞER SİSTEMLER**__
         \`•\`Kelime: **${Database.FiltredWords ? Database.FiltredWords.join() : 'Filtre\'de hiç kelime yok.'}**
         \`•\`Mute Rolü: **${Database.MutedRoleID ? "<@&"+Database.MutedRoleID+">" : 'Mute Rolü ayarlanmamış.'}**
-        \`•\`Mute Süresi: **${Database.MuteDurationMinute ?""+Database.MuteDurationMinute+"" : '60'}**
+        \`•\`Mute Süresi: **${Database.MuteDurationMinute ?""+Database.MuteDurationMinute+" Dakika." : '60'}**
         \`•\`Log Kanalı: **${Database.PunishLogChannelID ? "<#"+Database.PunishLogChannelID+">" : 'Log kanalı ayarlanmamış.'}
 
         \`•\`Komutları ve kullanımlarını görmek için ${config.Prefix}komutlar yazabilirsin.
@@ -240,7 +240,7 @@ client.on('message', async message => {
         
         if(Database.BlackListMembers.includes(member.user.id) === true) {
             await db.findOneAndUpdate({ ServerID: message.guild.id }, { $pull: { BlackListMembers: member.user.id } });
-            const MuteRole = message.guild.roles.cache.find(role => role.id === config.MutedRoleID);
+            const MuteRole = message.guild.roles.cache.find(role => role.id === Database.MutedRoleID);
             member.roles.remove(MuteRole).catch(() => {});
 
             return message.channel.send(embed.setDescription('**<@'+member.user.id+'>**, İsimli üye\'nin mutesi başarıyla kaldırıldı.')).catch(() => {});
