@@ -9,7 +9,7 @@ const { Spam, RandomColor, BadWord, WhiteList, Punish } = require('./functionz')
 client.on('message', async (message) => {
    if(!message.guild || message.author.bot || message.member.hasPermission(8) || message.author.id === message.guild.ownerID) return;
     const Database = await db.findOne({ ServerID: message.guild.id });
-    if(!Database || WhiteList(message) === true) return; 
+    if(!Database || await WhiteList(message) === true) return;
     const Embed = new MessageEmbed().setColor(RandomColor(true)).setTimestamp().setAuthor(message.guild.name, message.guild.iconURL({ dynamic: true }));
 
     if(message.content.length > '500') { 
