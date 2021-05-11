@@ -7,14 +7,15 @@ const { RandomColor } = require('./functionz');
 
 client.on('message', async message => {
     if(message.content.indexOf(config.Prefix) !== 0)
-    if(!message.guild || message.author.bot || !message.member.hasPermission(8)) return;
-    if(config.BotOwners.includes(message.author.id) === false || message.author.id !== message.guild.owner.id) return;
+    if(!message.guild || message.author.bot);
     let args = message.content.split(' ').slice(1);
     let command = message.content.split(' ')[0].slice(config.Prefix.length);
     if(!command) return;
     const embed = new MessageEmbed().setColor(RandomColor(true)).setTimestamp().setAuthor(message.guild.name, message.guild.iconURL({ dynamic: true }));
 
     if(command.toLowerCase() === 'serverstatus') {
+        if(config.BotOwners.includes(message.member.id) === false && !message.member.hasPermission(8)) return message.channel.send(`\`❌\` Ayar komutlarını kullanabilmen için yönetici olman gerek.`);
+
         const Database = await db.findOne({ ServerID: message.guild.id });
         if(Database) {
 
@@ -37,11 +38,11 @@ client.on('message', async message => {
         \`>\` Whitelist'te ki roller: ${Database.WhiteListRoles ? Database.WhiteListRoles.map(id => `<@&${id}>`).join('\n') : 'Whitlist\'te hiç rol yok.'}
         \`>\` Whitelist'te ki kanallar: ${Database.WhiteListChannels ? Database.WhiteListChannels.map(id => `<#${id}>`).join('\n') : 'Whitlist\'te hiç kanal yok.'}
  
-        __**Other Guards**__
+        __**DİĞER SİSTEMLER**__
         \`•\`Kelime: **${Database.FiltredWords ? Database.FiltredWords.join() : 'Filtre\'de hiç kelime yok.'}**
         \`•\`Mute Rolü: **${Database.MutedRoleID ? "<@&"+Database.MutedRoleID+">" : 'Mute Rolü ayarlanmamış.'}**
-        \`•\`Mute Süresi: **${Database.MuteDurationMinute ?"<#"+Database.MuteDurationMinute+">" : '60'}**
-        \`•\`Log Kanalı: **${Database.PunishLogChannelID ? "<#"+Database.PunishLogChannelID+">" : 'Log kanalı ayarlanmamış.'}**
+        \`•\`Mute Süresi: **${Database.MuteDurationMinute ?""+Database.MuteDurationMinute+"" : '60'}**
+        \`•\`Log Kanalı: **${Database.PunishLogChannelID ? "<#"+Database.PunishLogChannelID+">" : 'Log kanalı ayarlanmamış.'}
 
         \`•\`Komutları ve kullanımlarını görmek için ${config.Prefix}komutlar yazabilirsin.
   `)).catch(() => {}); }
@@ -71,7 +72,7 @@ client.on('message', async message => {
 
     }
     if(command.toLowerCase() === 'komutlar') {
-
+        if(config.BotOwners.includes(message.member.id) === false && !message.member.hasPermission(8)) return message.channel.send(`\`❌\` Ayar komutlarını kullanabilmen için yönetici olman gerek.`);
         message.channel.send(new MessageEmbed()
             .setColor(RandomColor(true))
             .setAuthor(message.author.tag, message.author.avatarURL({ dynamic: true }))
@@ -108,7 +109,8 @@ client.on('message', async message => {
     }
    
     if(command.toLowerCase() === 'whitelist') {
-   
+        if(config.BotOwners.includes(message.member.id) === false && !message.member.hasPermission(8)) return message.channel.send(`\`❌\` Ayar komutlarını kullanabilmen için yönetici olman gerek.`);
+
 
 
         if(!args[0]) return message.channel.send(embed.setDescription(':x: Örnek kullanım: **'+config.Prefix+'whitelist ekle/kaldır id/etiket (rol veya kanal veya kullanıcı)**'));
@@ -173,6 +175,8 @@ client.on('message', async message => {
     }
 
     if(command.toLowerCase() === 'filtre') {
+        if(config.BotOwners.includes(message.member.id) === false && !message.member.hasPermission(8)) return message.channel.send(`\`❌\` Ayar komutlarını kullanabilmen için yönetici olman gerek.`);
+
         if (!args[0]) return message.channel.send(embed.setDescription(':x: Örnek kullanım: '+config.Prefix+'filtre ekle/kaldır kelime')).catch(() => {});
    
         if (args[0] === 'ekle' || args[0] === 'add' ) {
@@ -194,6 +198,8 @@ client.on('message', async message => {
     }
 
     if(command.toLowerCase() === 'muterole') {
+        if(config.BotOwners.includes(message.member.id) === false && !message.member.hasPermission(8)) return message.channel.send(`\`❌\` Ayar komutlarını kullanabilmen için yönetici olman gerek.`);
+
         let MuteRole = message.mentions.roles.first() || message.guild.roles.cache.get(args[0]);
         if(!MuteRole) return message.channel.send(embed.setDescription(':x: Örnek kullanım: **'+config.Prefix+'muterole @role/role id**')).catch(() => {});
         await db.findOneAndUpdate({ ServerID: message.guild.id }, { $set: { MutedRoleID: MuteRole.id } });
@@ -201,6 +207,8 @@ client.on('message', async message => {
     }
 
     if(command.toLowerCase() === 'logchannel') {
+        if(config.BotOwners.includes(message.member.id) === false && !message.member.hasPermission(8)) return message.channel.send(`\`❌\` Ayar komutlarını kullanabilmen için yönetici olman gerek.`);
+
         let LogChannell = message.mentions.channels.first() || message.guild.channels.cache.get(args[0]);
         if(!LogChannell) return message.channel.send(embed.setDescription(':x: Örnek kullanım: **'+config.Prefix+'logchannel @channel/channel id**')).catch(() => {});
         await db.findOneAndUpdate({ ServerID: message.guild.id }, { $set: { PunishLogChannelID: LogChannell.id } });
@@ -208,13 +216,16 @@ client.on('message', async message => {
     }
 
     if(command.toLowerCase() === 'mutesüre') {
-        if(!args[0] || args[0] !== Number) return message.channel.send(embed.setDescription(':x: Örnek kullanım: **'+config.Prefix+'mutesure 15 (Süreyi dakika cinsinden giriniz.)**')).catch(() => {});
+        if(config.BotOwners.includes(message.member.id) === false && !message.member.hasPermission(8)) return message.channel.send(`\`❌\` Ayar komutlarını kullanabilmen için yönetici olman gerek.`);
+
+        if(!args[0] ||args[0] < 1) return message.channel.send(embed.setDescription(':x: Örnek kullanım: **'+config.Prefix+'mutesüre 15 (Süreyi dakika cinsinden giriniz.)**')).catch(() => {});
         await db.findOneAndUpdate({ ServerID: message.guild.id }, { $set: { MuteDurationMinute: args[0] } });
-        return message.channel.send(embed.setDescription('Başarıyla mute süresi **'+args[1]+'**, dakika olarak ayarlandı.')).catch(() => {});
+        return message.channel.send(embed.setDescription('Başarıyla mute süresi **'+args[0]+'**, dakika olarak ayarlandı.')).catch(() => {});
     }
 
     if(command.toLowerCase() === 'cezakaldır') {
-   
+        if(config.BotOwners.includes(message.member.id) === false && !message.member.hasPermission(8)) return message.channel.send(`\`❌\` Ayar komutlarını kullanabilmen için yönetici olman gerek.`);
+
         var member = message.mentions.members.first() || message.guild.members.cache.get(args[0]);
         const Database = await db.findOne({ ServerID: message.guild.id });
 
@@ -239,6 +250,8 @@ client.on('message', async message => {
       
 
     if(command.toLowerCase() === 'characterlimit') {
+        if(config.BotOwners.includes(message.member.id) === false && !message.member.hasPermission(8)) return message.channel.send(`\`❌\` Ayar komutlarını kullanabilmen için yönetici olman gerek.`);
+
         if (!args[0]) return message.channel.send(embed.setDescription(':x: Örnek kullanım: '+config.Prefix+'characterlimit aç/kapat.')).catch(() => {});
         const Database = await db.findOne({ServerID: message.guild.id});
         if(args[0] === 'aç') {
@@ -257,6 +270,8 @@ client.on('message', async message => {
     }
 
     if(command.toLowerCase() === 'inviteguard') {
+        if(config.BotOwners.includes(message.member.id) === false && !message.member.hasPermission(8)) return message.channel.send(`\`❌\` Ayar komutlarını kullanabilmen için yönetici olman gerek.`);
+
         if (!args[0]) return message.channel.send(embed.setDescription(':x: Örnek kullanım: '+config.Prefix+'inviteguard aç/kapat.')).catch(() => {});
 
         const Database = await db.findOne({ServerID: message.guild.id});
@@ -276,6 +291,8 @@ client.on('message', async message => {
     }
 
     if(command.toLowerCase() === 'linkguard') {
+        if(config.BotOwners.includes(message.member.id) === false && !message.member.hasPermission(8)) return message.channel.send(`\`❌\` Ayar komutlarını kullanabilmen için yönetici olman gerek.`);
+
         if (!args[0]) return message.channel.send(embed.setDescription(':x: Örnek kullanım: '+config.Prefix+'linkguard aç/kapat.')).catch(() => {});
 
         const Database = await db.findOne({ServerID: message.guild.id});
@@ -295,6 +312,8 @@ client.on('message', async message => {
     }
 
     if(command.toLowerCase() === 'masspingguard') {
+        if(config.BotOwners.includes(message.member.id) === false && !message.member.hasPermission(8)) return message.channel.send(`\`❌\` Ayar komutlarını kullanabilmen için yönetici olman gerek.`);
+
         if (!args[0]) return message.channel.send(embed.setDescription(':x: Örnek kullanım: '+config.Prefix+'masspingguard aç/kapat.')).catch(() => {});
 
         const Database = await db.findOne({ServerID: message.guild.id});
@@ -314,6 +333,8 @@ client.on('message', async message => {
     }
 
     if(command.toLowerCase() === 'badwordguard') {
+        if(config.BotOwners.includes(message.member.id) === false && !message.member.hasPermission(8)) return message.channel.send(`\`❌\` Ayar komutlarını kullanabilmen için yönetici olman gerek.`);
+
         if (!args[0]) return message.channel.send(embed.setDescription(':x: Örnek kullanım: '+config.Prefix+'badwordguard aç/kapat.')).catch(() => {});
 
         const Database = await db.findOne({ServerID: message.guild.id});
@@ -333,6 +354,8 @@ client.on('message', async message => {
     }
   
     if(command.toLowerCase() === 'spamguard') {
+        if(config.BotOwners.includes(message.member.id) === false && !message.member.hasPermission(8)) return message.channel.send(`\`❌\` Ayar komutlarını kullanabilmen için yönetici olman gerek.`);
+
         if (!args[0]) return message.channel.send(embed.setDescription(':x: Örnek kullanım: '+config.Prefix+'spamguard aç/kapat.')).catch(() => {});
 
         const Database = await db.findOne({ServerID: message.guild.id});
