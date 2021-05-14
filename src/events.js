@@ -60,7 +60,7 @@ client.on('messageUpdate', async (oldMessage, newMessage) => {
      if(!Database || await WhiteList(newMessage) === true) return;
      const Embed = new MessageEmbed().setColor(RandomColor(true)).setTimestamp().setAuthor(newMessage.guild.name, newMessage.guild.iconURL({ dynamic: true }));
  
-     if(message.content.length > '500') { 
+     if(newMessage.content.length > '500') { 
          if(Database.CharacterLimit === false || Database.CharacterLimit === null || !Database.CharacterLimit) return;
          if (newMessage && newMessage.deletable) newMessage.delete({ timeout: 0100 }).catch(() => {});
          return await Punish(newMessage, 'CharacterLimit', Embed);
