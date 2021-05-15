@@ -39,10 +39,10 @@ client.on('message', async message => {
         \`>\` Whitelist'te ki kanallar: ${Database.WhiteListChannels ? Database.WhiteListChannels.map(id => `<#${id}>`).join('\n') : 'Whitlist\'te hiç kanal yok.'}
  
         __**DİĞER SİSTEMLER**__
-        \`•\`Kelime: **${Database.FiltredWords ? Database.FiltredWords.join() : 'Filtre\'de hiç kelime yok.'}**
-        \`•\`Mute Rolü: **${Database.MutedRoleID ? "<@&"+Database.MutedRoleID+">" : 'Mute Rolü ayarlanmamış.'}**
-        \`•\`Mute Süresi: **${Database.MuteDurationMinute ?""+Database.MuteDurationMinute+" Dakika." : '60'}**
-        \`•\`Log Kanalı: **${Database.PunishLogChannelID ? "<#"+Database.PunishLogChannelID+">" : 'Log kanalı ayarlanmamış.'}
+        \`•\`**Filtreli Kelimeler**: ${Database.FiltredWords ? Database.FiltredWords.join() : 'Filtre\'de hiç kelime yok.'}
+        \`•\`**Mute Rolü**: ${Database.MutedRoleID ? "<@&"+Database.MutedRoleID+">" : 'Mute Rolü ayarlanmamış.'}
+        \`•\`**Mute Süresi**: ${Database.MuteDurationMinute ?""+Database.MuteDurationMinute+" Dakika." : '60'}
+        \`•\`**Log Kanalı**: ${Database.PunishLogChannelID ? "<#"+Database.PunishLogChannelID+">" : 'Log kanalı ayarlanmamış.'}
 
         \`•\`Komutları ve kullanımlarını görmek için ${config.Prefix}komutlar yazabilirsin.
   `)).catch(() => {}); }
