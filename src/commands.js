@@ -87,9 +87,9 @@ client.on('message', async message => {
 
     \`•\` Mute rolünü ayarlamak için: \`${config.Prefix}muterole @role [etiket veya id] \`
 
-    \`•\` Mute süresini ayarlamak için: \`${config.Prefix}logchannel @channel [etiket veya id] \`
+    \`•\` Mute süresini ayarlamak için: \`${config.Prefix}mutesüre 10 [Süreyi dakika cinsinden girin] \`
 
-    \`•\` Log kanalını ayarlamak için: \`${config.Prefix}mutesüre 10 [Süreyi dakika cinsinden girin] \`
+    \`•\` Log kanalını ayarlamak için: \`${config.Prefix}logchannel @channel [etiket veya id\`
 
     \`•\` Sunucuda ceza yemiş belirli bir kullanıcının cezasını kaldırmak için: \`${config.Prefix}cezakaldır @user [etiket veya id] \`
     
