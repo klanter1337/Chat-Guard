@@ -9,10 +9,6 @@
   * `Custom_Status_Text` Botunuzun özel durumunda yazan yazı. 
   * `Custom_Status_Type` Botunuzun özel durumunda ki eylem kısmı.
   * `Custom_Status` Botunuzun özel durumu yani botu çevrimiçi rahatsız etmeyin gibi gösteren ayar.
-  * `ServerID` Botu kullanacağınız sunucunun idsi.
-  * `MutedRoleID` Ceza olarak mute yiyecek kişilerin alacağı mute rolünün idsi (Mute rolünün yazma izni olmadığına emin olun).
-  * `PunishLogChannelID` Cezaların loglanacağı kanalın idsi
-  * `MuteDurationMinute` Mute cezası alcak kişilerin mute süresi (dakika cinsinden)
 
 * Hepsini Doldurup kaydettikden sonra botun klasörüne geri gelin.
 * install modules.bat adlı dosyayı çalıştırın ve modüllerin inmesini bekleyin indiği zaman kendi otomatik kapanacaktır.
@@ -22,6 +18,10 @@
 
 
 # Kullanım
+* ilk önce kurulum yapmalısınız.
+* `prefix+muterole @role/ID` Yazarak mute rolünü ayarlıyabilirsin.
+* `prefix+logchannel @channel/ID` Yazarak cezaların loglanacağı kanalı ayarlıyabilirsin.
+* `prefix+mutesüre 10(dakika cinsinden)` Yazarak ceza olarak mute alıcak kişilerin kaç dakika cezalı kalacağını ayarlıyabilirsin.
 * `prefix+komutlar` Yazarak tüm komutlar ve kullanımlarını görebilirsin.
 * Whitelist'e eklediğin kullanıcılar roller veya kanalların engellenmiyecek'lerini unutma.
 * Sunucunun durumunu görmek için `prefix+serverstatus` yazabilirsin.
