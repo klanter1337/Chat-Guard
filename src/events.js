@@ -95,7 +95,8 @@ client.on('guildMemberAdd', async (member) => {
     const Database = await db.findOne({ ServerID: member.guild.id });
     
     if (Database && Database.BlackListMembers.includes(member.id) === true) {
-        const MuteRole = member.guild.roles.cache.find(role => role.id === config.MutedRoleID);
+    const MuteRole = message.guild.roles.cache.find(role => role.id === Database.MutedRoleID);
+    if(!MuteRole) return;
         member.roles.add(MuteRole).catch(() => {});
         setTimeout(async() => {
             member.roles.remove(MuteRole).catch(() => {});
