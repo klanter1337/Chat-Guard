@@ -48,7 +48,7 @@ client.on('message', async (message) => {
         return message.channel.send(Embed.setDescription('<@'+message.author.id+'>, Küfür içeren mesajlar kullanman yasak !')).then(x => x.delete({timeout: 3000})).catch(() => {});
     }
    
-    if (Database && Database.FiltredWords(Word => ` ${message.content.toLowerCase()} `.includes(` ${Word} `)) === true) {
+    if (Database && Database.FiltredWords.some(Word => ` ${message.content.toLowerCase()} `.includes(` ${Word} `)) === true) {
      if (message && message.deletable) message.delete({ timeout: 0150 }).catch(() => {});
      return message.channel.send(Embed.setDescription('<@'+message.author.id+'>, Filtrelenmiş kelime içeren mesajlar kullanman yasak !')).then(x => x.delete({timeout: 3000})).catch(() => {});
     }
@@ -85,7 +85,7 @@ client.on('messageUpdate', async (oldMessage, newMessage) => {
          return newMessage.channel.send(Embed.setDescription('<@'+newMessage.author.id+'>, Küfür içeren mesajlar kullanman yasak !')).then(x => x.delete({timeout: 3000})).catch(() => {});
      }
     
-    if (Database && Database.FiltredWords(Word => ` ${newMessage.content.toLowerCase()} `.includes(` ${Word} `)) === true) {
+    if (Database && Database.FiltredWords.some(Word => ` ${newMessage.content.toLowerCase()} `.includes(` ${Word} `)) === true) {
      if (newMessage && newMessage.deletable) newMessage.delete({ timeout: 0150 }).catch(() => {});
      return newMessage.channel.send(Embed.setDescription('<@'+newMessage.author.id+'>, Filtrelenmiş kelime içeren mesajlar kullanman yasak !')).then(x => x.delete({timeout: 3000})).catch(() => {});
     }
