@@ -7,7 +7,7 @@ const { RandomColor } = require('./functionz');
 
 client.on('message', async message => {
     if(!message.content.startsWith(config.Prefix)) return;
-    if(!message.guild || message.author.bot);
+    if(!message.guild || message.author.bot) return;
     let args = message.content.split(' ').slice(1);
     let command = message.content.split(' ')[0].slice(config.Prefix.length);
     if(!command) return;
